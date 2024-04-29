@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint && prettier --check .",
     "lint:library": "ng lint cps-mdoc-viewer && prettier --check ./projects/cps-mdoc-viewer",
-    "lint:app": "ng lint example-app && prettier --check ./projects/example-app"
+    "lint:app": "ng lint example-app && prettier --check ./projects/example-app",
+    "watch-assets": "chokidar --initial 'projects/example-app/src/assets/categories/**/*' -c 'npm run generate-assets' -i 'projects/example-app/src/assets/categories/categories.json'"
   },
   "private": true,
   "dependencies": {
