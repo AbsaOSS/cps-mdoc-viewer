@@ -1,1 +1,46 @@
-<p>markdown-viewer works!</p>
+@if (markdownFiles$ | async; as files) {
+  <section class="header my-5">
+    <div class="p-4 p-md-5 mb-4 rounded-3 bg-body-color">
+      <div class="row">
+        <div class="col-lg-8 px-0">
+          <h1 class="display-4 fw-bold">{{ files[0]['description_title'] }}</h1>
+          <p class="lead my-3">
+            <markdown [data]="files[0]['description']"></markdown>
+          </p>
+          <div class="col col-auto d-flex align-items-center mt-2">
+            <div class="me-4">{{ files[0]['date'] | date }}</div>
+            <!-- TODO: implement reading time calculator-->
+            <!-- <svg class="me-2" xmlns="https://www.w3.org/2000/svg" width="4.94mm" height="4.94mm" viewBox="0 0 14 14">
+              <circle cx="7" cy="7" r="6.5" style="fill: none; stroke: #ffffff"></circle>
+              <path d="M4.72,3.26,7,7.31,9.78,5.52" style="fill: none; stroke: #ffffff; stroke-linejoin: round"></path>
+            </svg>
+            12min read -->
+          </div>
+        </div>
+        <div class="col-lg-4 header-image text-center text-lg-end">
+          <img [src]="files[0]['image'] ?? 'assets/images/default_header_image.svg'" alt="Header image" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-5">
+    <div class="row g-lg-5">
+      <!--TABLE CONTENTS SECTIONS STARTS HERE-->
+      <app-table-contents class="col-lg-3"></app-table-contents>
+      <!--TABLE CONTENTS SECTIONS ENDS HERE-->
+
+      <div class="col-lg-9">
+        @for (file of files; track $index) {
+          <cps-divider *ngIf="file.level === 1" class="wrapper-divider" />
+          <div class="markdown-wrapper" [id]="file.id">
+            @if ($index !== 0) {
+              <h2 class="section-title">{{ file.title }}</h2>
+            }
+            <markdown [src]="file.filePath" (ready)="markdownRendered()"></markdown>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}

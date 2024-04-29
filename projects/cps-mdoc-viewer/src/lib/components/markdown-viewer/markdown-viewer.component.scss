@@ -1,0 +1,101 @@
+$color-calm: var(--cps-color-calm);
+$color-text-dark: var(--cps-color-text-dark);
+
+:host {
+  .header {
+    .header-image {
+      img {
+        max-height: 250px;
+      }
+    }
+  }
+  .bg-body-color {
+    background-color: $color-calm;
+    color: white;
+  }
+
+  .wrapper-divider {
+    margin: -1rem 0;
+  }
+
+  .markdown-wrapper {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    line-height: 1.6;
+
+    .section-title {
+      color: $color-calm;
+    }
+
+    ::ng-deep {
+      p {
+        font-size: 1.125rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+
+      a {
+        color: $color-calm;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      blockquote {
+        margin-left: 0;
+        padding-left: 1.25rem;
+        border-left: 0.25rem solid $color-calm;
+        color: $color-text-dark;
+        font-style: italic;
+      }
+
+      ul,
+      ol {
+        padding-left: 2rem;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 1rem auto;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        border-radius: 0.5rem;
+      }
+
+      table {
+        display: block;
+        border-collapse: collapse;
+        width: 100%;
+        width: max-content;
+        max-width: 100%;
+        overflow: auto;
+        th,
+        td {
+          text-align: left;
+          padding: 0.5rem;
+          border-bottom: 1px solid $color-calm;
+        }
+
+        th {
+          background-color: rgba(135, 10, 60, 0.5);
+        }
+
+        tr:nth-child(even) {
+          background-color: rgba(135, 10, 60, 0.1);
+        }
+      }
+    }
+  }
+}

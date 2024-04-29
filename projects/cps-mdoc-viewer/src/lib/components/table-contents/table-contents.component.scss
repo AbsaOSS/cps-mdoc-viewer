@@ -1,0 +1,86 @@
+$primary-color: black;
+$secondary-color: var(--cps-color-prepared);
+$bullet-left: 15px;
+$padding-left-base: 0.5rem;
+$padding-left-multiplier: 1.1rem;
+$line-height: 1.5;
+
+:host {
+  .contents-table {
+    top: 4rem;
+    // Navbar height is 66px + 10px offset = 76px
+    max-height: calc(100vh - 76px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cps-color-text-light) var(--cps-color-line-light);
+  }
+
+  .list-unstyled li {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 0.5rem;
+    position: relative;
+    line-height: $line-height;
+  }
+
+  // Generate styles for subheadings
+  @for $i from 1 through 5 {
+    .list-unstyled .table-contents-subheading-#{$i}::before {
+      content: '•';
+      position: absolute;
+      left: $bullet-left * $i;
+    }
+
+    .list-unstyled .table-contents-subheading-#{$i} a {
+      padding-left: $padding-left-base + $padding-left-multiplier * $i;
+    }
+  }
+
+  .list-unstyled a {
+    color: $primary-color;
+    text-decoration: none;
+    padding-left: $padding-left-base;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .list-unstyled li::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: $primary-color;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    opacity: 0;
+  }
+
+  .list-unstyled li:has(a:hover) {
+    &::before {
+      color: $secondary-color;
+    }
+  }
+
+  .list-unstyled li.active {
+    &::after {
+      opacity: 1;
+      background-color: $secondary-color;
+    }
+
+    &::before {
+      color: $secondary-color;
+    }
+
+    a {
+      font-weight: bold;
+      letter-spacing: -0.038em;
+      color: $secondary-color;
+    }
+  }
+}

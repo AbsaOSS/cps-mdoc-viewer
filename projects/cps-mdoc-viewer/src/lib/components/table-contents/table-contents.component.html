@@ -1,0 +1,18 @@
+<div class="contents-table position-sticky border rounded shadow-sm mb-3" [appActiveLink]="(tableContents$ | async) ?? []">
+  <div class="p-4">
+    @if (tableContents$ | async; as tableContents) {
+      <h4 class="mb-4">{{ tableContents[0].title }}</h4>
+      <div class="mb-0">
+        <ul class="list-unstyled">
+          @for (item of tableContents; track $index) {
+            @if ($index !== 0) {
+              <li [class]="item.class">
+                <a [href]="'#' + item.id">{{ item.title }}</a>
+              </li>
+            }
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</div>
