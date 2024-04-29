@@ -27,7 +27,10 @@
               "projects/example-app/src/favicon.ico",
               "projects/example-app/src/assets"
             ],
-            "styles": ["projects/example-app/src/styles.scss"],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/example-app/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
