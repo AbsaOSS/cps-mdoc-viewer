@@ -33,5 +33,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
   `
 })
 export class CpsMdocViewerComponent {
-  scrollTop(): void {}
+  scrollTop(event: MouseEvent): void {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
