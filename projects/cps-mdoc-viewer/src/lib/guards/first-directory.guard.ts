@@ -4,7 +4,9 @@ import { map, of, switchMap, tap } from 'rxjs';
 import { DirectoryToolbarInfo } from '../models/directory-toolbar-info.interface';
 import { DirectoryService } from '../services/directory.service';
 
-export const firstDirectoryGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
+export const firstDirectoryGuard: CanActivateFn = (
+  route: ActivatedRouteSnapshot
+) => {
   const directoryService = inject(DirectoryService);
   const router = inject(Router);
   const currentDirectory = route.paramMap.get('directory');
@@ -12,7 +14,9 @@ export const firstDirectoryGuard: CanActivateFn = (route: ActivatedRouteSnapshot
   return directoryService.getTopLevelDirectories().pipe(
     switchMap((topLevelDirectories) => {
       // Check if the current directory is a top level directory
-      const isTopLevelDirectory = topLevelDirectories.some((dir) => dir.directory === currentDirectory);
+      const isTopLevelDirectory = topLevelDirectories.some(
+        (dir) => dir.directory === currentDirectory
+      );
       if (isTopLevelDirectory) {
         return of(true);
       } else {
@@ -21,9 +25,9 @@ export const firstDirectoryGuard: CanActivateFn = (route: ActivatedRouteSnapshot
           tap((firstDirectory: DirectoryToolbarInfo) => {
             router.navigate([firstDirectory.directory]);
           }),
-          map(() => false),
+          map(() => false)
         );
       }
-    }),
+    })
   );
 };

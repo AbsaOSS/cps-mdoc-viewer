@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './markdown-viewer.component.html',
   styleUrl: './markdown-viewer.component.css'
 })
-export class MarkdownViewerComponent {
-
-}
+export class MarkdownViewerComponent {}

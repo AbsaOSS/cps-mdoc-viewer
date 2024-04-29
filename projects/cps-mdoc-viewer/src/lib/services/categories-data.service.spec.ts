@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
 
 import { CategoriesDataService } from './categories-data.service';
 import { Category } from '../models/categories.interface';
@@ -11,7 +14,7 @@ describe('CategoriesDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [CategoriesDataService],
+      providers: [CategoriesDataService]
     });
     service = TestBed.inject(CategoriesDataService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -29,7 +32,7 @@ describe('CategoriesDataService', () => {
     const mockCategories: Category = {
       sortedOrder: ['docs', 'features'],
       docs: {},
-      features: {},
+      features: {}
     };
     service.getCategories().subscribe((categories) => {
       expect(categories).toEqual(mockCategories);
@@ -45,7 +48,7 @@ describe('CategoriesDataService', () => {
     const mockCategories: Category = {
       sortedOrder: ['docs', 'features'],
       docs: {},
-      features: {},
+      features: {}
     };
 
     service.getCategories().subscribe();
@@ -60,13 +63,13 @@ describe('CategoriesDataService', () => {
     httpMock.expectNone(service.pathToCategoriesJson); // No second request, because the result is cached
   });
 
-  it("should filter out future categories", (done) => {
+  it('should filter out future categories', (done) => {
     const mockCategories: Category = {
       sortedOrder: ['docs', 'features'],
       docs: {
-        sortedOrder: [{ date: "2050-05-05" }, { date: "2050-05-05" }, 'doc2'],
+        sortedOrder: [{ date: '2050-05-05' }, { date: '2050-05-05' }, 'doc2'],
         doc2: {
-          date: "1990-05-05",
+          date: '1990-05-05'
         }
       },
       features: {
@@ -75,9 +78,9 @@ describe('CategoriesDataService', () => {
           sortedOrder: [{}]
         },
         feature2: {
-          sortedOrder: [{ date: "2050-05-05" }]
+          sortedOrder: [{ date: '2050-05-05' }]
         }
-      },
+      }
     };
 
     const mockCategoriesWithoutFuture: Category = {
@@ -86,8 +89,8 @@ describe('CategoriesDataService', () => {
         sortedOrder: [{}, 'feature1'],
         feature1: {
           sortedOrder: [{}]
-        },
-      },
+        }
+      }
     };
 
     service.getCategories().subscribe((categories) => {

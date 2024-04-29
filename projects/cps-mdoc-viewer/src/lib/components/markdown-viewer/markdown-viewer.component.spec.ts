@@ -9,9 +9,8 @@ describe('MarkdownViewerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MarkdownViewerComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(MarkdownViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -14,22 +14,26 @@ describe('DirectoryService', () => {
     docs: {
       sortedOrder: [
         {
-          toolbar_title: 'Getting Tested',
-        },
-      ],
+          toolbar_title: 'Getting Tested'
+        }
+      ]
     },
     features: {
       sortedOrder: [
         {
-          title: 'Testing features',
-        },
-      ],
-    },
+          title: 'Testing features'
+        }
+      ]
+    }
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MockProvider(CategoriesDataService, { getCategories: () => of(mackCategories) })],
+      providers: [
+        MockProvider(CategoriesDataService, {
+          getCategories: () => of(mackCategories)
+        })
+      ]
     });
     service = TestBed.inject(DirectoryService);
   });
@@ -42,23 +46,25 @@ describe('DirectoryService', () => {
     const expectedResult = [
       {
         toolbar_title: 'Getting Tested',
-        directory: 'docs',
+        directory: 'docs'
       },
       {
         toolbar_title: 'features',
-        directory: 'features',
-      },
+        directory: 'features'
+      }
     ];
-    service.getTopLevelDirectories().subscribe((directories: DirectoryToolbarInfo[]) => {
-      expect(directories).toEqual(expectedResult);
-      done();
-    });
+    service
+      .getTopLevelDirectories()
+      .subscribe((directories: DirectoryToolbarInfo[]) => {
+        expect(directories).toEqual(expectedResult);
+        done();
+      });
   });
 
   it('should return first directory', (done) => {
     const expectedFirstDirectory = {
       toolbar_title: 'Getting Tested',
-      directory: 'docs',
+      directory: 'docs'
     };
     service.getFirstDirectory().subscribe((directory) => {
       expect(directory).toEqual(expectedFirstDirectory);

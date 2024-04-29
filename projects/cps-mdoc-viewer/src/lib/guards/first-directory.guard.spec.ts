@@ -4,7 +4,10 @@ import { CanActivateFn } from '@angular/router';
 import { firstDirectoryGuard } from './first-directory.guard';
 
 describe('firstDirectoryGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => TestBed.runInInjectionContext(() => firstDirectoryGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() =>
+      firstDirectoryGuard(...guardParameters)
+    );
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

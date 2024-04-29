@@ -5,7 +5,7 @@ import { CategoriesDataService } from './categories-data.service';
 import { DirectoryToolbarInfo } from '../models/directory-toolbar-info.interface';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DirectoryService {
   constructor(private categoriesDataService: CategoriesDataService) {}
@@ -29,9 +29,12 @@ export class DirectoryService {
         });
       }),
       catchError((error) => {
-        console.error('Error occurred while fetching top level directories:', error);
+        console.error(
+          'Error occurred while fetching top level directories:',
+          error
+        );
         return throwError(() => error);
-      }),
+      })
     );
   }
 
@@ -39,9 +42,12 @@ export class DirectoryService {
     return this.getTopLevelDirectories().pipe(
       map((directories: DirectoryToolbarInfo[]) => directories[0]),
       catchError((error) => {
-        console.error('Error occurred while fetching first directories:', error);
+        console.error(
+          'Error occurred while fetching first directories:',
+          error
+        );
         return throwError(() => error);
-      }),
+      })
     );
   }
 }
