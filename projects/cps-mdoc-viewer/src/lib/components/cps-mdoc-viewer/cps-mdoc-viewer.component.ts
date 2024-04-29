@@ -7,7 +7,30 @@ import { NavbarComponent } from '../navbar/navbar.component';
   standalone: true,
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: 'cps-mdoc-viewer.component.html',
-  styles: ``
+  styles: `
+    :host {
+      .site-footer {
+        background-color: var(--cps-color-calm);
+
+        a {
+          display: block;
+          color: white;
+
+          &:hover {
+            text-decoration: none;
+          }
+
+          &:first-child {
+            margin-bottom: 10px;
+          }
+        }
+
+        .storyset-label {
+          font-size: 12px;
+        }
+      }
+    }
+  `
 })
 export class CpsMdocViewerComponent {
   scrollTop(): void {}

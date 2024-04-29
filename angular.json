@@ -25,10 +25,16 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/example-app/src/favicon.ico",
-              "projects/example-app/src/assets"
+              "projects/example-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/cps-ui-kit/assets",
+                "output": "assets"
+              }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/cps-ui-kit/styles/styles.scss",
               "projects/example-app/src/styles.scss"
             ],
             "scripts": []
