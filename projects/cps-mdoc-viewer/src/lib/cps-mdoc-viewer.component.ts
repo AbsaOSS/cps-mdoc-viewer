@@ -4,13 +4,7 @@ import { Component } from '@angular/core';
   selector: 'lib-cps-mdoc-viewer',
   standalone: true,
   imports: [],
-  template: `
-    <p>
-      cps-mdoc-viewer works!
-    </p>
-  `,
+  template: ` <p>cps-mdoc-viewer works!</p> `,
   styles: ``
 })
-export class CpsMdocViewerComponent {
-
-}
+export class CpsMdocViewerComponent {}

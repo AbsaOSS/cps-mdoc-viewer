@@ -74,6 +74,15 @@
         },
         "test": {
           "builder": "@angular-builders/jest:run"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/example-app/**/*.ts",
+              "projects/example-app/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -100,6 +109,15 @@
         },
         "test": {
           "builder": "@angular-builders/jest:run"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/cps-mdoc-viewer/**/*.ts",
+              "projects/cps-mdoc-viewer/**/*.html"
+            ]
+          }
         }
       }
     }

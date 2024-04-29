@@ -9,9 +9,8 @@ describe('CpsMdocViewerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CpsMdocViewerComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CpsMdocViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
