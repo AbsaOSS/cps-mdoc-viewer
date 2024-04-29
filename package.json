@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build cps-mdoc-viewer --configuration=production",
+    "watch": "ng build cps-mdoc-viewer --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint && prettier --check ."
+    "lint": "ng lint && prettier --check .",
+    "lint:library": "ng lint cps-mdoc-viewer && prettier --check ./projects/cps-mdoc-viewer",
+    "lint:app": "ng lint example-app && prettier --check ./projects/example-app"
   },
   "private": true,
   "dependencies": {
