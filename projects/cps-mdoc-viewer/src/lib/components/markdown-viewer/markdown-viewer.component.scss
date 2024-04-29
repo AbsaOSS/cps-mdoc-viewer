@@ -1,4 +1,4 @@
-$color-calm: var(--cps-color-calm);
+$primary-color: var(--cps-mdoc-viewer-primary);
 $color-text-dark: var(--cps-color-text-dark);
 
 :host {
@@ -10,7 +10,7 @@ $color-text-dark: var(--cps-color-text-dark);
     }
   }
   .bg-body-color {
-    background-color: $color-calm;
+    background-color: $primary-color;
     color: white;
   }
 
@@ -24,7 +24,7 @@ $color-text-dark: var(--cps-color-text-dark);
     line-height: 1.6;
 
     .section-title {
-      color: $color-calm;
+      color: $primary-color;
     }
 
     ::ng-deep {
@@ -44,7 +44,7 @@ $color-text-dark: var(--cps-color-text-dark);
       }
 
       a {
-        color: $color-calm;
+        color: $primary-color;
         text-decoration: none;
 
         &:hover {
@@ -55,7 +55,7 @@ $color-text-dark: var(--cps-color-text-dark);
       blockquote {
         margin-left: 0;
         padding-left: 1.25rem;
-        border-left: 0.25rem solid $color-calm;
+        border-left: 0.25rem solid $primary-color;
         color: $color-text-dark;
         font-style: italic;
       }
@@ -85,15 +85,16 @@ $color-text-dark: var(--cps-color-text-dark);
         td {
           text-align: left;
           padding: 0.5rem;
-          border-bottom: 1px solid $color-calm;
+          border-bottom: 1px solid $primary-color;
         }
 
         th {
-          background-color: rgba(135, 10, 60, 0.5);
+          background-color: color-mix(in srgb, $primary-color 50%, white);
+          // background-color: pink;
         }
 
         tr:nth-child(even) {
-          background-color: rgba(135, 10, 60, 0.1);
+          background-color: color-mix(in srgb, $primary-color 10%, white);
         }
       }
     }
