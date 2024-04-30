@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "plugins": ["license-header"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -10,7 +11,10 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "prettier"
-      ]
+      ],
+      "rules": {
+        "license-header/header": ["error", "./license-header.js"]
+      }
     },
     {
       "files": ["*.html"],

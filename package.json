@@ -10,7 +10,7 @@
     "lint": "ng lint && prettier --check .",
     "lint:library": "ng lint cps-mdoc-viewer && prettier --check ./projects/cps-mdoc-viewer",
     "lint:app": "ng lint example-app && prettier --check ./projects/example-app",
-    "format": "prettier --write .",
+    "lint:fix": "ng lint --fix && prettier --write .",
     "generate-assets": "node generate-assets.js",
     "watch-assets": "chokidar --initial 'projects/example-app/src/assets/categories/**/*' -c 'npm run generate-assets' -i 'projects/example-app/src/assets/categories/categories.json'"
   },
@@ -51,6 +51,7 @@
     "chokidar-cli": "^3.0.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-license-header": "^0.6.1",
     "jest": "^29.7.0",
     "ng-mocks": "^14.12.2",
     "ng-packagr": "^17.3.0",
