@@ -14,7 +14,7 @@ describe('MarkdownViewerComponent', () => {
 
   let component: MarkdownViewerComponent;
   let fixture: ComponentFixture<MarkdownViewerComponent>;
-  let activatedRouteSubject = new BehaviorSubject({ markdownFiles: [{ title: 'Test Title', description: 'Test Description', date: new Date() }] });
+  const activatedRouteSubject = new BehaviorSubject({ markdownFiles: [{ title: 'Test Title', description: 'Test Description', date: new Date() }] });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

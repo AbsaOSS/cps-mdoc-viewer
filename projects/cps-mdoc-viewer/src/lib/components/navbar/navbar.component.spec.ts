@@ -92,7 +92,7 @@ describe('NavbarComponent', () => {
     const toggleSpy = jest.spyOn(component, 'toggleNavbarMenu');
 
     const navbarToggleButton = fixture.debugElement.query(By.css('.navbar-toggler'));
-    let navbarMenu = fixture.debugElement.query(By.css('.navbar-collapse'));
+    const navbarMenu = fixture.debugElement.query(By.css('.navbar-collapse'));
     expect(navbarToggleButton).toBeTruthy();
 
     // Menu is hidden
