@@ -4,8 +4,8 @@ import { provideCPSMDocViewer } from 'cps-mdoc-viewer';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideCPSMDocViewer({
-      headerTitle: 'CPSM Documentation Viewer',
-      pageTitle: 'CPSM Documentation Viewer',
+      headerTitle: 'CPS MDoc Viewer',
+      pageTitle: 'CPS MDoc Viewer',
       logo: 'assets/images/rocket.svg'
     })
   ]
