@@ -8,13 +8,14 @@ date: 2017-01-05
 **Note:** Remember to replace this placeholder content with actual project details.
 
 **Guidelines for project page authors:**
+
 - **Real-World Scenarios:** Offer examples that depict real-world use cases. These can significantly help users understand the practical applications of your project.
 - **Diverse Examples:** Try to cover a broad spectrum of examples that showcase different features or capabilities of your project.
 - **Code Clarity:** When providing code snippets, ensure they are well-documented, easy to understand, and follow best practices.
 - **Live Demos:** If possible, provide links to live demos or interactive playgrounds that allow users to test out the examples.
-- **Update:** Remember to continually update this page as you develop new features or examples, so users can always see the latest and greatest applications of your project! 
+- **Update:** Remember to continually update this page as you develop new features or examples, so users can always see the latest and greatest applications of your project!
 - **Support & Feedback:** Encourage users to provide feedback on the examples or ask questions if they encounter difficulties.
-{{% /pageinfo %}}
+  {{% /pageinfo %}}
 
 ## Example Applications
 

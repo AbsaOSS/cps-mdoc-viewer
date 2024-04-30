@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
 import { MockProvider } from 'ng-mocks';
@@ -15,21 +20,23 @@ describe('NavbarComponent', () => {
   const mockTopLevelDirectory: DirectoryToolbarInfo[] = [
     {
       toolbar_title: 'nav',
-      directory: 'testing',
+      directory: 'testing'
     },
     {
       toolbar_title: 'secondNav',
-      directory: 'docs',
-    },
+      directory: 'docs'
+    }
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavbarComponent],
       providers: [
-        MockProvider(DirectoryService, { getTopLevelDirectories: () => of(mockTopLevelDirectory) }),
-        MockProvider(ActivatedRoute),
-      ],
+        MockProvider(DirectoryService, {
+          getTopLevelDirectories: () => of(mockTopLevelDirectory)
+        }),
+        MockProvider(ActivatedRoute)
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavbarComponent);
@@ -70,17 +77,25 @@ describe('NavbarComponent', () => {
   it('should correctly update scrollPercent on window scroll', () => {
     // Mock window.scrollY and document.documentElement.scrollTop
     Object.defineProperty(window, 'scrollY', { value: 100 });
-    Object.defineProperty(document.documentElement, 'scrollTop', { value: 100 });
+    Object.defineProperty(document.documentElement, 'scrollTop', {
+      value: 100
+    });
 
     // Mock window.innerHeight and document.documentElement.clientHeight
     Object.defineProperty(window, 'innerHeight', { value: 500 });
-    Object.defineProperty(document.documentElement, 'clientHeight', { value: 500 });
+    Object.defineProperty(document.documentElement, 'clientHeight', {
+      value: 500
+    });
 
     // Mock document heights
     Object.defineProperty(document.body, 'scrollHeight', { value: 1000 });
-    Object.defineProperty(document.documentElement, 'scrollHeight', { value: 1000 });
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      value: 1000
+    });
     Object.defineProperty(document.body, 'offsetHeight', { value: 1000 });
-    Object.defineProperty(document.documentElement, 'offsetHeight', { value: 1000 });
+    Object.defineProperty(document.documentElement, 'offsetHeight', {
+      value: 1000
+    });
 
     component.onWindowScroll();
 
@@ -91,7 +106,9 @@ describe('NavbarComponent', () => {
   it('should correctly toggle navigation menu', fakeAsync(() => {
     const toggleSpy = jest.spyOn(component, 'toggleNavbarMenu');
 
-    const navbarToggleButton = fixture.debugElement.query(By.css('.navbar-toggler'));
+    const navbarToggleButton = fixture.debugElement.query(
+      By.css('.navbar-toggler')
+    );
     const navbarMenu = fixture.debugElement.query(By.css('.navbar-collapse'));
     expect(navbarToggleButton).toBeTruthy();
 
@@ -100,11 +117,11 @@ describe('NavbarComponent', () => {
     expect(navbarMenu.classes['collapse']).toBe(true);
 
     // Click on the navbar toggle button
-    navbarToggleButton?.triggerEventHandler("click");
+    navbarToggleButton?.triggerEventHandler('click');
 
     // Toggle function was called
     expect(toggleSpy).toHaveBeenCalled();
-    
+
     // Navbar menu is transitioning
     expect(navbarMenu.classes['collapsing']).toBe(true);
     expect(navbarMenu.classes['collapse']).toBe(undefined);
@@ -116,7 +133,7 @@ describe('NavbarComponent', () => {
     expect(navbarMenu.classes['collapse']).toBe(true);
     expect(navbarMenu.classes['collapsing']).toBe(undefined);
 
-    navbarToggleButton?.triggerEventHandler("click");
+    navbarToggleButton?.triggerEventHandler('click');
 
     // Navbar menu is transitioning
     expect(navbarMenu.classes['collapsing']).toBe(true);

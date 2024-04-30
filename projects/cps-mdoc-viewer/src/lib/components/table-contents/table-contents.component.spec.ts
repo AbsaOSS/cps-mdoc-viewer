@@ -16,7 +16,7 @@ describe('TableContentsComponent', () => {
       imports: [TableContentsComponent],
       providers: [
         MockProvider(ActivatedRoute, {
-          params: of({ directory: 'test' }),
+          params: of({ directory: 'test' })
         }),
         MockProvider(TableContentsService, {
           getCategorizedTableContents: () =>
@@ -24,11 +24,11 @@ describe('TableContentsComponent', () => {
               {
                 id: 'test',
                 title: 'test',
-                class: 'test-class',
-              },
-            ]),
-        }),
-      ],
+                class: 'test-class'
+              }
+            ])
+        })
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableContentsComponent);
@@ -42,14 +42,19 @@ describe('TableContentsComponent', () => {
   });
 
   it('should call getCategorizedTableContents with correct parameter', () => {
-    const spy = jest.spyOn(mockTableContentsService, 'getCategorizedTableContents');
+    const spy = jest.spyOn(
+      mockTableContentsService,
+      'getCategorizedTableContents'
+    );
     component.ngOnInit();
     expect(spy).toHaveBeenCalledWith('test');
   });
 
   it('should emit correct value from tableContents$', (done) => {
     component.tableContents$?.subscribe((value) => {
-      expect(value).toEqual([{ title: 'test', class: 'test-class', id: 'test', }]);
+      expect(value).toEqual([
+        { title: 'test', class: 'test-class', id: 'test' }
+      ]);
       done();
     });
   });

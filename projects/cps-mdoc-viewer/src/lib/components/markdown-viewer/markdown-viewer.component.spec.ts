@@ -14,11 +14,20 @@ describe('MarkdownViewerComponent', () => {
 
   let component: MarkdownViewerComponent;
   let fixture: ComponentFixture<MarkdownViewerComponent>;
-  const activatedRouteSubject = new BehaviorSubject({ markdownFiles: [{ title: 'Test Title', description: 'Test Description', date: new Date() }] });
+  const activatedRouteSubject = new BehaviorSubject({
+    markdownFiles: [
+      { title: 'Test Title', description: 'Test Description', date: new Date() }
+    ]
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MarkdownViewerComponent, MockComponent(TableContentsComponent), MockModule(MarkdownModule), MockComponent(CpsDividerComponent)],
+      imports: [
+        MarkdownViewerComponent,
+        MockComponent(TableContentsComponent),
+        MockModule(MarkdownModule),
+        MockComponent(CpsDividerComponent)
+      ],
       providers: [
         MockProvider(MarkdownResourceService),
         MockProvider(ActivatedRoute, {
@@ -26,7 +35,7 @@ describe('MarkdownViewerComponent', () => {
           snapshot: {} as any
         }),
         MockProvider(Title, { setTitle: jest.fn() })
-      ],
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MarkdownViewerComponent);
@@ -49,10 +58,22 @@ describe('MarkdownViewerComponent', () => {
 
   it('should page title correctly based on the markdown files data', fakeAsync(() => {
     const titleService = TestBed.inject(Title);
-    activatedRouteSubject.next({ markdownFiles: [{ title: 'New Updated Title!', description: 'Test Description', date: new Date() }] });
+    activatedRouteSubject.next({
+      markdownFiles: [
+        {
+          title: 'New Updated Title!',
+          description: 'Test Description',
+          date: new Date()
+        }
+      ]
+    });
 
     expect(titleService.setTitle).toHaveBeenCalledTimes(2);
-    expect(titleService.setTitle).toHaveBeenCalledWith('Test Title - Test Training Documentation');
-    expect(titleService.setTitle).toHaveBeenCalledWith('New Updated Title! - Test Training Documentation');
+    expect(titleService.setTitle).toHaveBeenCalledWith(
+      'Test Title - Test Training Documentation'
+    );
+    expect(titleService.setTitle).toHaveBeenCalledWith(
+      'New Updated Title! - Test Training Documentation'
+    );
   }));
 });

@@ -11,12 +11,16 @@ describe('TableContentsService', () => {
   const mackCategories: Category = {
     sortedOrder: ['docs', 'features'],
     docs: {},
-    features: {},
+    features: {}
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MockProvider(CategoriesDataService, { getCategories: () => of(mackCategories) })],
+      providers: [
+        MockProvider(CategoriesDataService, {
+          getCategories: () => of(mackCategories)
+        })
+      ]
     });
     service = TestBed.inject(TableContentsService);
   });
@@ -27,22 +31,58 @@ describe('TableContentsService', () => {
 
   it('should prepare list items correctly with nested categories', () => {
     const category = {
-      sortedOrder: [{ title: 'test', id: 'test', file: '_index.md', filePath: '', weight: 0, content: '', date: new Date(), level: 0 }, 'nestedCategory'],
+      sortedOrder: [
+        {
+          title: 'test',
+          id: 'test',
+          file: '_index.md',
+          filePath: '',
+          weight: 0,
+          content: '',
+          date: new Date(),
+          level: 0
+        },
+        'nestedCategory'
+      ],
       nestedCategory: {
         sortedOrder: [
-          { title: 'nestedTest', id: 'nestedTest', file: '_index.md', filePath: '', weight: 0, content: '', level: 1, date: new Date() },
-          'deepNestedCategory',
+          {
+            title: 'nestedTest',
+            id: 'nestedTest',
+            file: '_index.md',
+            filePath: '',
+            weight: 0,
+            content: '',
+            level: 1,
+            date: new Date()
+          },
+          'deepNestedCategory'
         ],
         deepNestedCategory: {
-          sortedOrder: [{ title: 'deepNestedCategory', id: 'deepNestedCategory', file: '_index.md', filePath: '', weight: 0, content: '', date: new Date(), level: 2 }],
-        },
-      },
+          sortedOrder: [
+            {
+              title: 'deepNestedCategory',
+              id: 'deepNestedCategory',
+              file: '_index.md',
+              filePath: '',
+              weight: 0,
+              content: '',
+              date: new Date(),
+              level: 2
+            }
+          ]
+        }
+      }
     };
     const items = service.prepareListItems(category);
     expect(items).toEqual([
       { title: 'test', id: 'test', class: '' },
       { title: 'nestedTest', id: 'nestedTest', class: '' },
-      { title: 'deepNestedCategory', id: 'deepNestedCategory', class: 'table-contents-subheading-2' },
+      {
+        title: 'deepNestedCategory',
+        id: 'deepNestedCategory',
+        class: 'table-contents-subheading-2'
+      }
     ]);
   });
 });

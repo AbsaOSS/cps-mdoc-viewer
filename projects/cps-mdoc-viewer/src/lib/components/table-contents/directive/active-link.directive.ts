@@ -1,4 +1,13 @@
-import { Directive, ElementRef, HostListener, Renderer2, OnDestroy, AfterRenderPhase, afterRender, Input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Renderer2,
+  OnDestroy,
+  AfterRenderPhase,
+  afterRender,
+  Input
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
 import { Location } from '@angular/common';
@@ -11,7 +20,7 @@ export interface ListItem {
 
 @Directive({
   selector: '[appActiveLink]',
-  standalone: true,
+  standalone: true
 })
 export class ActiveLinkDirective implements OnDestroy {
   @Input() set appActiveLink(items: ListItem[]) {
@@ -34,13 +43,13 @@ export class ActiveLinkDirective implements OnDestroy {
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private location: Location,
+    private location: Location
   ) {
     afterRender(
       () => {
         this.getNavbarHeight();
       },
-      { phase: AfterRenderPhase.Read },
+      { phase: AfterRenderPhase.Read }
     );
   }
 
@@ -52,10 +61,15 @@ export class ActiveLinkDirective implements OnDestroy {
   }
 
   setupItemsAndSections() {
-    this.listItems = this.elementRef.nativeElement.querySelectorAll('.list-unstyled li a');
+    this.listItems = this.elementRef.nativeElement.querySelectorAll(
+      '.list-unstyled li a'
+    );
 
     if (this.listItems) {
-      this.sections = Array.from(this.listItems).map((item) => this.getElementByUnescapedId(item.getAttribute('href')!.substring(1))!);
+      this.sections = Array.from(this.listItems).map(
+        (item) =>
+          this.getElementByUnescapedId(item.getAttribute('href')!.substring(1))!
+      );
     }
   }
 
@@ -63,16 +77,20 @@ export class ActiveLinkDirective implements OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
     this.listItems?.forEach((item) => {
       const click$ = fromEvent(item, 'click').pipe(takeUntil(this.destroy$));
-      this.subscriptions.push(click$.subscribe((e: Event) => this.handleItemClick(e)));
+      this.subscriptions.push(
+        click$.subscribe((e: Event) => this.handleItemClick(e))
+      );
     });
   }
 
   handleItemClick(e: Event): void {
     e.preventDefault();
-    const targetSection = this.getElementByUnescapedId((e.target as HTMLElement).getAttribute('href')!.substring(1));
+    const targetSection = this.getElementByUnescapedId(
+      (e.target as HTMLElement).getAttribute('href')!.substring(1)
+    );
     window.scrollTo({
       top: (targetSection?.offsetTop || 0) - this.navbarHeight,
-      behavior: 'smooth',
+      behavior: 'smooth'
     });
   }
 
@@ -83,14 +101,21 @@ export class ActiveLinkDirective implements OnDestroy {
       if (section) {
         const rect = section.getBoundingClientRect();
         // 32px (2rem) is the distance between sections
-        if (rect.top - 1 <= this.navbarHeight && rect.bottom + 32 >= this.navbarHeight) {
+        if (
+          rect.top - 1 <= this.navbarHeight &&
+          rect.bottom + 32 >= this.navbarHeight
+        ) {
           this.removeActiveClassFromAllItems();
           const parentElement = this.listItems?.[index].parentElement;
           if (parentElement) {
             this.renderer.addClass(parentElement, 'active');
             activeSet = true;
             if (this.listItems?.[index].getAttribute('href')) {
-              this.setUrlFragment(this.listItems?.[index].getAttribute('href')?.substring(1) as string);
+              this.setUrlFragment(
+                this.listItems?.[index]
+                  .getAttribute('href')
+                  ?.substring(1) as string
+              );
             }
           }
         }
@@ -109,7 +134,10 @@ export class ActiveLinkDirective implements OnDestroy {
       clearTimeout(this.anchorDebounceTimeout);
     }
     this.anchorDebounceTimeout = setTimeout(() => {
-      const urlTree = this.router.createUrlTree([], fragment ? { fragment } : undefined);
+      const urlTree = this.router.createUrlTree(
+        [],
+        fragment ? { fragment } : undefined
+      );
       this.location.replaceState(urlTree.toString());
     }, 100);
   }
@@ -119,7 +147,11 @@ export class ActiveLinkDirective implements OnDestroy {
   }
 
   removeActiveClassFromAllItems(): void {
-    this.listItems?.forEach((item) => item.parentElement && this.renderer.removeClass(item.parentElement, 'active'));
+    this.listItems?.forEach(
+      (item) =>
+        item.parentElement &&
+        this.renderer.removeClass(item.parentElement, 'active')
+    );
   }
 
   ngOnDestroy(): void {
