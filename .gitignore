@@ -42,3 +42,5 @@ testem.log
 Thumbs.db
 
 .nx/cache
+
+projects/cps-mdoc-viewer/src/assets-generator/generate-assets.min.js

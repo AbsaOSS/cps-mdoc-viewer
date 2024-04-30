@@ -42,3 +42,4 @@ Thumbs.db
 .nx/cache
 
 projects/example-app/src/assets/categories/categories.json
+projects/cps-mdoc-viewer/src/assets-generator/generate-assets.min.js

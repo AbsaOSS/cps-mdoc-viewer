@@ -4,15 +4,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build cps-mdoc-viewer --configuration=production",
+    "build": "npm run minify-assets-generator && ng build cps-mdoc-viewer --configuration=production",
     "watch": "ng build cps-mdoc-viewer --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint && prettier --check .",
     "lint:library": "ng lint cps-mdoc-viewer && prettier --check ./projects/cps-mdoc-viewer",
     "lint:app": "ng lint example-app && prettier --check ./projects/example-app",
     "lint:fix": "ng lint --fix && prettier --write .",
-    "generate-assets": "node generate-assets.js",
-    "watch-assets": "chokidar --initial 'projects/example-app/src/assets/categories/**/*' -c 'npm run generate-assets' -i 'projects/example-app/src/assets/categories/categories.json'"
+    "generate-assets": "node dist/cps-mdoc-viewer/assets-generator/generate-assets.min.js",
+    "watch-assets": "chokidar --initial 'projects/example-app/src/assets/categories/**/*' -c 'npm run generate-assets' -i 'projects/example-app/src/assets/categories/categories.json'",
+    "minify-assets-generator": "esbuild --minify projects/cps-mdoc-viewer/src/assets-generator/generate-assets.js --outfile=projects/cps-mdoc-viewer/src/assets-generator/generate-assets.min.js"
   },
   "private": true,
   "dependencies": {

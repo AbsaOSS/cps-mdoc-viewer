@@ -1,7 +1,12 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "assets": [
-    { "input": "src/styles", "glob": "**/*.scss", "output": "styles" }
+    { "input": "src/styles", "glob": "**/*.scss", "output": "styles" },
+    {
+      "input": "src/assets-generator",
+      "glob": "generate-assets.min.js",
+      "output": "assets-generator"
+    }
   ],
   "dest": "../../dist/cps-mdoc-viewer",
   "lib": {
