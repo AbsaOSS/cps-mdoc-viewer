@@ -1,5 +1,6 @@
 import {
   EnvironmentProviders,
+  InjectionToken,
   SecurityContext,
   makeEnvironmentProviders
 } from '@angular/core';
@@ -44,7 +45,19 @@ function markedOptionsFactory(): MarkedOptions {
   };
 }
 
-export const provideCPSMDocViewer = (): EnvironmentProviders => {
+export const CONFIG_INJECTION_TOKEN = new InjectionToken<CPSMDocViewerConfig>(
+  'CPSMDocViewerConfig'
+);
+
+export interface CPSMDocViewerConfig {
+  headerTitle: string;
+  pageTitle: string;
+  logo?: string;
+}
+
+export const provideCPSMDocViewer = (
+  config: CPSMDocViewerConfig
+): EnvironmentProviders => {
   return makeEnvironmentProviders([
     provideRouter(routes),
     provideHttpClient(),
@@ -55,6 +68,10 @@ export const provideCPSMDocViewer = (): EnvironmentProviders => {
         useFactory: markedOptionsFactory
       },
       sanitize: SecurityContext.NONE
-    })
+    }),
+    {
+      provide: CONFIG_INJECTION_TOKEN,
+      useValue: config
+    }
   ]);
 };

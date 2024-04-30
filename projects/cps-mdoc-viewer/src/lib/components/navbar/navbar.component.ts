@@ -1,17 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, viewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  viewChild
+} from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { DirectoryService } from '../../services/directory.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DirectoryToolbarInfo } from '../../models/directory-toolbar-info.interface';
 import { CpsIconComponent } from 'cps-ui-kit';
+import {
+  CONFIG_INJECTION_TOKEN,
+  CPSMDocViewerConfig
+} from '../../lib.provider';
 
 @Component({
   selector: 'navbar',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, CpsIconComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+  styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
   categories$: Observable<DirectoryToolbarInfo[]> | undefined;
@@ -19,16 +30,19 @@ export class NavbarComponent implements OnInit {
   navbarMenu = viewChild<ElementRef>('navbarMenu');
   navbarMenuTransitioning = false;
 
-  constructor(private directoryService: DirectoryService) {}
+  constructor(
+    private directoryService: DirectoryService,
+    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig
+  ) {}
 
   ngOnInit(): void {
     this.categories$ = this.directoryService.getTopLevelDirectories().pipe(
       map((directoriesInfo) =>
         directoriesInfo.map((directory) => ({
           toolbar_title: this.capitalizeFirstLetter(directory.toolbar_title),
-          directory: directory.directory,
-        })),
-      ),
+          directory: directory.directory
+        }))
+      )
     );
   }
   private capitalizeFirstLetter(string: string): string {
@@ -73,7 +87,8 @@ export class NavbarComponent implements OnInit {
 
   private hideNavbarMenu(): void {
     const navBarMenuElement: HTMLElement = this.navbarMenu()?.nativeElement;
-    navBarMenuElement.style['height'] = navBarMenuElement.getBoundingClientRect().height + 'px';
+    navBarMenuElement.style['height'] =
+      navBarMenuElement.getBoundingClientRect().height + 'px';
     // Force reflow by evaluating offsetHeight
     // see https://stackoverflow.com/questions/9016307/force-reflow-in-css-transitions-in-bootstrap
     navBarMenuElement.offsetHeight;
@@ -92,15 +107,22 @@ export class NavbarComponent implements OnInit {
   }
 
   private trackReadPercentage(): void {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    const scrollTop =
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const windowHeight =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
     const docHeight = Math.max(
       document.body.scrollHeight,
       document.documentElement.scrollHeight,
       document.body.offsetHeight,
       document.documentElement.offsetHeight,
       document.body.clientHeight,
-      document.documentElement.clientHeight,
+      document.documentElement.clientHeight
     );
     // 84px is footer's height
     const totalDocScrollLength = docHeight - windowHeight - 84;

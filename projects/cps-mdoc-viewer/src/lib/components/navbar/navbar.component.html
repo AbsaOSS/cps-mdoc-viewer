@@ -2,19 +2,31 @@
   <div class="scroll-progress-bar" [style.width.%]="scrollPercent"></div>
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="assets/images/logo.svg" alt="logo" />
-      <!-- TODO add title from DI -->
-      <h1>Title</h1>
+      @if (libConfig.logo) {
+        <img [src]="libConfig.logo" alt="logo" />
+      }
+      <h1>{{ libConfig.headerTitle }}</h1>
     </a>
-    <button class="navbar-toggler" type="button" aria-label="Toggle navigation" (click)="toggleNavbarMenu()">
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbarMenu()">
       <cps-icon icon="burger" size="30"></cps-icon>
     </button>
     <div #navbarMenu class="collapse navbar-collapse">
       <div class="navbar-nav ms-auto">
-        @for (category of categories$ | async; track $index; let firstLink = $first) {
-          <a class="nav-link" [routerLink]="['/', category.directory | lowercase]" routerLinkActive="active">{{
-            category.toolbar_title
-          }}</a>
+        @for (
+          category of categories$ | async;
+          track $index;
+          let firstLink = $first
+        ) {
+          <a
+            class="nav-link"
+            [routerLink]="['/', category.directory | lowercase]"
+            routerLinkActive="active"
+            >{{ category.toolbar_title }}</a
+          >
         }
       </div>
     </div>

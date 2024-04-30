@@ -17,9 +17,11 @@
             12min read -->
           </div>
         </div>
-        <div class="col-lg-4 header-image text-center text-lg-end">
-          <img [src]="files[0]['image'] ?? 'assets/images/default_header_image.svg'" alt="Header image" />
-        </div>
+        @if (files[0]['image']) {
+          <div class="col-lg-4 header-image text-center text-lg-end">
+            <img [src]="files[0]['image']" alt="Header image" />
+          </div>
+        }
       </div>
     </div>
   </section>
@@ -37,7 +39,9 @@
             @if ($index !== 0) {
               <h2 class="section-title">{{ file.title }}</h2>
             }
-            <markdown [src]="file.filePath" (ready)="markdownRendered()"></markdown>
+            <markdown
+              [src]="file.filePath"
+              (ready)="markdownRendered()"></markdown>
           </div>
         }
       </div>
