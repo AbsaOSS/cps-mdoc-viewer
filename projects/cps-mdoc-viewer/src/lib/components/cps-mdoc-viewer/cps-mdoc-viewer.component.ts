@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { Component, ContentChild, TemplateRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'cps-mdoc-viewer',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, NgTemplateOutlet],
   templateUrl: 'cps-mdoc-viewer.component.html'
 })
-export class CpsMdocViewerComponent {}
+export class CpsMdocViewerComponent {
+  @ContentChild('footer', { static: false })
+  public footerContent?: TemplateRef<unknown>;
+}

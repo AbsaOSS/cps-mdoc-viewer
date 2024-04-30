@@ -4,4 +4,8 @@
   <router-outlet></router-outlet>
 </main>
 
-<footer-comp></footer-comp>
+<footer-comp>
+  @if (footerContent) {
+    <ng-container *ngTemplateOutlet="footerContent"></ng-container>
+  }
+</footer-comp>
