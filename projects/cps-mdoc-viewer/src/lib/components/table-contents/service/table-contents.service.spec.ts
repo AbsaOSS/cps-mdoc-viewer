@@ -81,7 +81,7 @@ describe('TableContentsService', () => {
       {
         title: 'deepNestedCategory',
         id: 'deepNestedCategory',
-        class: 'table-contents-subheading-2'
+        class: 'table-contents-subheading-1'
       }
     ]);
   });

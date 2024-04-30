@@ -8,6 +8,7 @@ import { MarkdownResourceService } from '../../services/markdown-resource.servic
 import { MarkdownModule } from 'ngx-markdown';
 import { Title } from '@angular/platform-browser';
 import { CpsDividerComponent } from 'cps-ui-kit';
+import { CONFIG_INJECTION_TOKEN } from '../../lib.provider';
 
 describe('MarkdownViewerComponent', () => {
   globalThis.window.scrollTo = jest.fn();
@@ -34,7 +35,14 @@ describe('MarkdownViewerComponent', () => {
           data: activatedRouteSubject,
           snapshot: {} as any
         }),
-        MockProvider(Title, { setTitle: jest.fn() })
+        MockProvider(Title, { setTitle: jest.fn() }),
+        {
+          provide: CONFIG_INJECTION_TOKEN,
+          useValue: {
+            headerTitle: 'Test Training Documentation',
+            pageTitle: 'Test Training Documentation'
+          }
+        }
       ]
     }).compileComponents();
 

@@ -1,31 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MockComponent } from 'ng-mocks';
+import { CpsMdocViewerComponent } from 'cps-mdoc-viewer';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent]
-    }).compileComponents();
+    })
+      .overrideComponent(AppComponent, {
+        remove: { imports: [CpsMdocViewerComponent] },
+        add: { imports: [MockComponent(CpsMdocViewerComponent)] }
+      })
+      .compileComponents();
   });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have the 'example-app' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('example-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, example-app'
-    );
   });
 });

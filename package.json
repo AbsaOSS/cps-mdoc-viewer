@@ -1,5 +1,5 @@
 {
-  "name": "cps-mdoc-viewer",
+  "name": "cps-mdoc-viewer-srcs",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

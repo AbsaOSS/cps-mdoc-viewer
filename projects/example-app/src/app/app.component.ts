@@ -9,6 +9,4 @@ import { CpsMdocViewerComponent } from 'cps-mdoc-viewer';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'example-app';
-}
+export class AppComponent {}

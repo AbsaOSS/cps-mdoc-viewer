@@ -12,6 +12,7 @@ import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { DirectoryToolbarInfo } from '../../models/directory-toolbar-info.interface';
 import { By } from '@angular/platform-browser';
+import { CONFIG_INJECTION_TOKEN } from '../../lib.provider';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -35,7 +36,14 @@ describe('NavbarComponent', () => {
         MockProvider(DirectoryService, {
           getTopLevelDirectories: () => of(mockTopLevelDirectory)
         }),
-        MockProvider(ActivatedRoute)
+        MockProvider(ActivatedRoute),
+        {
+          provide: CONFIG_INJECTION_TOKEN,
+          useValue: {
+            headerTitle: 'Test header title',
+            pageTitle: 'Test page title'
+          }
+        }
       ]
     }).compileComponents();
 
