@@ -20,7 +20,7 @@ import { provideCPSMDocViewer } from 'cps-mdoc-viewer';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideCPSMDocViewer({
-      headerTitle: 'Example App',
+      headerTitle: 'CPS MDoc Viewer',
       pageTitle: 'Example App of the CPS MDoc Viewer library',
       logo: 'assets/images/rocket.svg',
       markdownFilesLocation: 'assets/categories'
