@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
 import { Category } from '../models/categories.interface';
-import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from '../lib.provider';
+import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from '../config/config';
 
 @Injectable({
   providedIn: 'root'

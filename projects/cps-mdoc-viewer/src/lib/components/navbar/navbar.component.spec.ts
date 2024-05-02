@@ -28,7 +28,7 @@ import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { DirectoryToolbarInfo } from '../../models/directory-toolbar-info.interface';
 import { By } from '@angular/platform-browser';
-import { CONFIG_INJECTION_TOKEN } from '../../lib.provider';
+import { CONFIG_INJECTION_TOKEN } from '../../config/config';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;

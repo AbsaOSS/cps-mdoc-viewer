@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of cps-mdoc-viewer
- */
+import { InjectionToken } from '@angular/core';
 
-export { provideCPSMDocViewer } from './lib/lib.provider';
-export { CPSMDocViewerConfig } from './lib/config/config';
-export * from './lib/components/cps-mdoc-viewer/cps-mdoc-viewer.component';
+export const CONFIG_INJECTION_TOKEN = new InjectionToken<CPSMDocViewerConfig>(
+  'CPSMDocViewerConfig'
+);
+
+export interface CPSMDocViewerConfig {
+  headerTitle: string;
+  pageTitle: string;
+  logo?: string;
+  markdownFilesLocation: string;
+}
