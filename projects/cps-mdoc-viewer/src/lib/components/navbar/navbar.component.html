@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg bg-color sticky-top shadow-sm">
+  <div class="scroll-progress-bar" [style.width.%]="scrollPercent"></div>
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      @if (libConfig.logo) {
+        <img [src]="libConfig.logo" alt="logo" />
+      }
+      <h1>{{ libConfig.headerTitle }}</h1>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbarMenu()">
+      <cps-icon icon="burger" size="30"></cps-icon>
+    </button>
+    <div #navbarMenu class="collapse navbar-collapse">
+      <div class="navbar-nav ms-auto">
+        @for (
+          category of categories$ | async;
+          track $index;
+          let firstLink = $first
+        ) {
+          <a
+            class="nav-link"
+            [routerLink]="['/', category.directory | lowercase]"
+            routerLinkActive="active"
+            >{{ category.toolbar_title }}</a
+          >
+        }
+      </div>
+    </div>
+  </div>
+</nav>

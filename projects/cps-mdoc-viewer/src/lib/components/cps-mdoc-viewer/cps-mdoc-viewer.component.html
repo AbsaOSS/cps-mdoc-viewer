@@ -1,0 +1,11 @@
+<navbar></navbar>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+
+<footer-comp>
+  @if (footerContent) {
+    <ng-container *ngTemplateOutlet="footerContent"></ng-container>
+  }
+</footer-comp>

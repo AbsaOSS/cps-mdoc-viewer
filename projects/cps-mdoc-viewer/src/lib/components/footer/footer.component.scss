@@ -1,0 +1,12 @@
+.site-footer {
+  background-color: var(--cps-mdoc-viewer-primary);
+
+  a {
+    display: block;
+    color: white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

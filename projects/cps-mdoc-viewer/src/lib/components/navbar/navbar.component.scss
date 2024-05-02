@@ -1,0 +1,61 @@
+:host {
+  $primary-color: var(--cps-mdoc-viewer-primary);
+  $secondary-color: var(--cps-mdoc-viewer-secondary);
+
+  .bg-color {
+    background-color: white;
+  }
+
+  .nav-link:hover {
+    color: $primary-color;
+  }
+
+  .navbar-nav .nav-link.active {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .scroll-progress-bar {
+    height: 2px;
+    background-color: $secondary-color;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      max-height: 30px;
+    }
+
+    h1 {
+      color: $primary-color;
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+  }
+
+  .navbar-toggler {
+    line-height: 14px;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      color: $primary-color;
+      border-color: $primary-color;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:active {
+      box-shadow: 0 0 0 0.1rem;
+    }
+  }
+}
