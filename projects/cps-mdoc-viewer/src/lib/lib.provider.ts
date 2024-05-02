@@ -69,6 +69,7 @@ export interface CPSMDocViewerConfig {
   headerTitle: string;
   pageTitle: string;
   logo?: string;
+  markdownFilesLocation: string;
 }
 
 export const provideCPSMDocViewer = (

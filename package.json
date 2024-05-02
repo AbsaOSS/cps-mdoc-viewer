@@ -11,7 +11,7 @@
     "lint:library": "ng lint cps-mdoc-viewer && prettier --check ./projects/cps-mdoc-viewer",
     "lint:app": "ng lint example-app && prettier --check ./projects/example-app",
     "lint:fix": "ng lint --fix && prettier --write .",
-    "generate-assets": "node dist/cps-mdoc-viewer/assets-generator/generate-assets.min.js",
+    "generate-assets": "node dist/cps-mdoc-viewer/assets-generator/generate-assets.min.js --input=projects/example-app/src/assets/categories --serveUrl=assets/categories --mainTs=projects/example-app/src/main.ts",
     "watch-assets": "chokidar --initial 'projects/example-app/src/assets/categories/**/*' -c 'npm run generate-assets' -i 'projects/example-app/src/assets/categories/categories.json'",
     "minify-assets-generator": "esbuild --minify projects/cps-mdoc-viewer/src/assets-generator/generate-assets.js --outfile=projects/cps-mdoc-viewer/src/assets-generator/generate-assets.min.js"
   },

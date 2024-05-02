@@ -22,6 +22,7 @@ import {
 
 import { CategoriesDataService } from './categories-data.service';
 import { Category } from '../models/categories.interface';
+import { CONFIG_INJECTION_TOKEN } from '../lib.provider';
 
 describe('CategoriesDataService', () => {
   let service: CategoriesDataService;
@@ -30,7 +31,13 @@ describe('CategoriesDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [CategoriesDataService]
+      providers: [
+        CategoriesDataService,
+        {
+          provide: CONFIG_INJECTION_TOKEN,
+          useValue: { markdownFilesLocation: 'assets/categories' }
+        }
+      ]
     });
     service = TestBed.inject(CategoriesDataService);
     httpMock = TestBed.inject(HttpTestingController);

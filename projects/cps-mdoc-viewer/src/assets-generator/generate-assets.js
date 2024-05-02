@@ -144,18 +144,28 @@ function createUniqueId(title, rootDirectory) {
 }
 
 (async () => {
-  const directories = await findDirectories(
-    './projects/example-app/src/assets/categories',
-    'assets/categories'
-  );
+  const args = process.argv.slice(2);
+  const inputPath = args
+    .filter((arg) => arg.startsWith('--input='))[0]
+    ?.split('=')[1];
+  const outputPath = args
+    .filter((arg) => arg.startsWith('--serveUrl='))[0]
+    ?.split('=')[1];
+  const mainTsPath = args
+    .filter((arg) => arg.startsWith('--mainTs='))[0]
+    ?.split('=')[1];
+  if (!inputPath || !outputPath || !mainTsPath) {
+    throw new Error('Missing arguments');
+  }
+  const directories = await findDirectories(inputPath, outputPath);
   await fs.writeFile(
-    './projects/example-app/src/assets/categories/categories.json',
+    path.normalize(inputPath + '/categories.json'),
     JSON.stringify(directories)
   );
 
   /* Modification of the main.ts just to trigger the dev server reload, to serve newly added assets
        Workaround until https://github.com/angular/angular-cli/issues/27511 is resolved
     */
-  let mainTs = await fs.readFile('./projects/example-app/src/main.ts', 'utf-8');
-  await fs.writeFile('./projects/example-app/src/main.ts', mainTs);
+  let mainTs = await fs.readFile(mainTsPath, 'utf-8');
+  await fs.writeFile(mainTsPath, mainTs);
 })();

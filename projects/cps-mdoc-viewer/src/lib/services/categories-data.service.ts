@@ -15,18 +15,27 @@
  */
 
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
 import { Category } from '../models/categories.interface';
+import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from '../lib.provider';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesDataService {
-  pathToCategoriesJson = 'assets/categories/categories.json';
+  pathToCategoriesJson: string;
   private cache$: Observable<Category> | undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(CONFIG_INJECTION_TOKEN) config: CPSMDocViewerConfig
+  ) {
+    this.pathToCategoriesJson =
+      (config.markdownFilesLocation.endsWith('/')
+        ? config.markdownFilesLocation
+        : config.markdownFilesLocation + '/') + 'categories.json';
+  }
 
   getCategories(): Observable<Category> {
     if (!this.cache$) {
