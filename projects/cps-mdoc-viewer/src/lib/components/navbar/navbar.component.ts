@@ -31,7 +31,7 @@ import { CpsIconComponent } from 'cps-ui-kit';
 import {
   CONFIG_INJECTION_TOKEN,
   CPSMDocViewerConfig
-} from '../../lib.provider';
+} from '../../config/config';
 
 @Component({
   selector: 'navbar',

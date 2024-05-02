@@ -24,7 +24,7 @@ import { MarkdownResourceService } from '../../services/markdown-resource.servic
 import { MarkdownModule } from 'ngx-markdown';
 import { Title } from '@angular/platform-browser';
 import { CpsDividerComponent } from 'cps-ui-kit';
-import { CONFIG_INJECTION_TOKEN } from '../../lib.provider';
+import { CONFIG_INJECTION_TOKEN } from '../../config/config';
 
 describe('MarkdownViewerComponent', () => {
   globalThis.window.scrollTo = jest.fn();

@@ -22,7 +22,7 @@ import {
 
 import { CategoriesDataService } from './categories-data.service';
 import { Category } from '../models/categories.interface';
-import { CONFIG_INJECTION_TOKEN } from '../lib.provider';
+import { CONFIG_INJECTION_TOKEN } from '../config/config';
 
 describe('CategoriesDataService', () => {
   let service: CategoriesDataService;
