@@ -38,7 +38,14 @@
               "dist/cps-mdoc-viewer/styles/styles.scss",
               "projects/example-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "projects/example-app/src/main.server.ts",
+            "prerender": {
+              "routesFile": "projects/example-app/routes.txt"
+            },
+            "ssr": {
+              "entry": "projects/example-app/server.ts"
+            }
           },
           "configurations": {
             "production": {

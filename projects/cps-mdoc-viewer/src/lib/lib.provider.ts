@@ -21,9 +21,15 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { MARKED_OPTIONS, MarkedOptions, provideMarkdown } from 'ngx-markdown';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors
+} from '@angular/common/http';
 import { routes } from './config/routes';
 import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from './config/config';
+import { markdownCacheInterceptor } from './interceptors/caching.interceptor';
 
 function markedOptionsFactory(): MarkedOptions {
   return {
@@ -45,7 +51,10 @@ export const provideCPSMDocViewer = (
 ): EnvironmentProviders => {
   return makeEnvironmentProviders([
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([markdownCacheInterceptor])
+    ),
     provideMarkdown({
       loader: HttpClient,
       markedOptions: {
