@@ -1,12 +1,6 @@
 $primary-color: var(--cps-mdoc-viewer-primary);
 $color-text-dark: var(--cps-color-text-dark);
 
-.hide-tables ::ng-deep {
-  table {
-    visibility: hidden;
-  }
-}
-
 :host {
   .header {
     .header-image {
@@ -80,7 +74,7 @@ $color-text-dark: var(--cps-color-text-dark);
         border-radius: 0.5rem;
       }
 
-      table:not(.p-datatable-table) {
+      table {
         display: block;
         border-collapse: collapse;
         width: 100%;
@@ -96,6 +90,7 @@ $color-text-dark: var(--cps-color-text-dark);
 
         th {
           background-color: color-mix(in srgb, $primary-color 50%, white);
+          // background-color: pink;
         }
 
         tr:nth-child(even) {
