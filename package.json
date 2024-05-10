@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "npm run minify-assets-generator && ng build cps-mdoc-viewer --configuration=production",
+    "build:example-app": "ng build --project example-app",
     "watch": "ng build cps-mdoc-viewer --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint && prettier --check .",
