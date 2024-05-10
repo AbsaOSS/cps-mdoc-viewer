@@ -15,18 +15,27 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectorRef,
+  Component,
+  EnvironmentInjector,
+  Inject,
+  OnInit,
+  createComponent
+} from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { map, Observable, tap } from 'rxjs';
 import { TableContentsComponent } from '../table-contents/table-contents.component';
 import { MarkdownFile } from '../../models/categories.interface';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { CpsDividerComponent } from 'cps-ui-kit';
+import { CpsDividerComponent, CpsTableComponent } from 'cps-ui-kit';
 import {
   CONFIG_INJECTION_TOKEN,
   CPSMDocViewerConfig
 } from '../../config/config';
+import { parseTableData } from '../../utils/parse-table-data.util';
 
 @Component({
   selector: 'app-markdown-viewer',
@@ -35,7 +44,8 @@ import {
     MarkdownComponent,
     TableContentsComponent,
     CommonModule,
-    CpsDividerComponent
+    CpsDividerComponent,
+    CpsTableComponent
   ],
   templateUrl: './markdown-viewer.component.html',
   styleUrl: './markdown-viewer.component.scss'
@@ -43,11 +53,15 @@ import {
 export class MarkdownViewerComponent implements OnInit {
   markdownFiles$: Observable<MarkdownFile[]> | undefined;
   markdownFilesToRender = 0;
+  tablesReplaced = false;
 
   constructor(
     private route: ActivatedRoute,
     private title: Title,
-    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig
+    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig,
+    private appRef: ApplicationRef,
+    private environmentInjector: EnvironmentInjector,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -72,6 +86,7 @@ export class MarkdownViewerComponent implements OnInit {
   markdownRendered(): void {
     this.markdownFilesToRender--;
     if (this.markdownFilesToRender === 0) {
+      this._replaceTablesWithComponents();
       const fragment = this.route.snapshot.fragment;
       if (fragment) {
         const targetSection = document.querySelector(
@@ -90,5 +105,60 @@ export class MarkdownViewerComponent implements OnInit {
         }
       }
     }
+  }
+
+  /**
+   * Replaces tables that are inside .cps-table divs with CpsTableComponents
+   */
+  private _replaceTablesWithComponents(): void {
+    const tables: NodeListOf<HTMLTableElement> =
+      document.querySelectorAll('.cps-table > table');
+
+    tables.forEach((table) => {
+      const parentDiv = table.parentElement;
+      const tableData = parseTableData(table);
+      const cpsTableRef = createComponent(CpsTableComponent, {
+        environmentInjector: this.environmentInjector
+      });
+
+      cpsTableRef.setInput('data', [...tableData.data]);
+      cpsTableRef.setInput(
+        'columns',
+        [...tableData.columns].map((col) => ({ ...col }))
+      );
+      cpsTableRef.setInput(
+        'hasToolbar',
+        parentDiv?.classList.contains('searchable')
+      );
+      cpsTableRef.setInput(
+        'showGlobalFilter',
+        parentDiv?.classList.contains('searchable')
+      );
+      cpsTableRef.setInput(
+        'sortable',
+        parentDiv?.classList.contains('sortable')
+      );
+      cpsTableRef.setInput(
+        'filterableByColumns',
+        parentDiv?.classList.contains('filterableByColumns')
+      );
+      cpsTableRef.setInput(
+        'paginator',
+        parentDiv?.classList.contains('paginator')
+      );
+      cpsTableRef.setInput(
+        'bordered',
+        parentDiv?.classList.contains('bordered')
+      );
+
+      table.parentElement?.insertBefore(
+        cpsTableRef.location.nativeElement,
+        table
+      );
+      table.remove();
+      this.appRef.attachView(cpsTableRef.hostView);
+    });
+    this.changeDetectorRef.detectChanges();
+    this.tablesReplaced = true;
   }
 }
