@@ -22,11 +22,13 @@ import {
   OnDestroy,
   AfterRenderPhase,
   afterRender,
-  Input
+  Input,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
-import { Location } from '@angular/common';
+import { Location, isPlatformBrowser } from '@angular/common';
 
 export interface ListItem {
   title: string;
@@ -42,8 +44,10 @@ export class ActiveLinkDirective implements OnDestroy {
   @Input() set appActiveLink(items: ListItem[]) {
     if (items.length) {
       setTimeout(() => {
-        this.setupItemsAndSections();
-        this.setupClickListeners();
+        if (isPlatformBrowser(this.platformId)) {
+          this.setupItemsAndSections();
+          this.setupClickListeners();
+        }
       });
     }
   }
@@ -59,7 +63,9 @@ export class ActiveLinkDirective implements OnDestroy {
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private location: Location
+    private location: Location,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     afterRender(
       () => {

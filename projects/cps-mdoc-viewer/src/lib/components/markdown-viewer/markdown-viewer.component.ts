@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { map, Observable, tap } from 'rxjs';
 import { TableContentsComponent } from '../table-contents/table-contents.component';
 import { MarkdownFile } from '../../models/categories.interface';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { CpsDividerComponent } from 'cps-ui-kit';
+// import { CpsDividerComponent } from 'cps-ui-kit';
 import {
   CONFIG_INJECTION_TOKEN,
   CPSMDocViewerConfig
@@ -34,8 +34,8 @@ import {
   imports: [
     MarkdownComponent,
     TableContentsComponent,
-    CommonModule,
-    CpsDividerComponent
+    CommonModule
+    // CpsDividerComponent
   ],
   templateUrl: './markdown-viewer.component.html',
   styleUrl: './markdown-viewer.component.scss'
@@ -47,7 +47,9 @@ export class MarkdownViewerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private title: Title,
-    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig
+    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +57,9 @@ export class MarkdownViewerComponent implements OnInit {
       map((data) => data['markdownFiles']),
       tap((markdownData) => {
         if (!this.route.snapshot.fragment) {
-          window.scrollTo({ top: 0, behavior: 'instant' });
+          if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }
         }
         this.markdownFilesToRender = markdownData.length;
         if (markdownData && markdownData[0]?.title) {

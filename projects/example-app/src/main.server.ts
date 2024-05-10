@@ -14,18 +14,10 @@
  * limitations under the License.
  */
 
-import { ApplicationConfig } from '@angular/core';
-import { provideCPSMDocViewer } from 'cps-mdoc-viewer';
-import { provideClientHydration } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { config } from './app/app.config.server';
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideCPSMDocViewer({
-      headerTitle: 'CPS MDoc Viewer',
-      pageTitle: 'Example App of the CPS MDoc Viewer library',
-      logo: 'assets/images/rocket.svg',
-      markdownFilesLocation: 'assets/categories'
-    }),
-    provideClientHydration()
-  ]
-};
+const bootstrap = () => bootstrapApplication(AppComponent, config);
+
+export default bootstrap;

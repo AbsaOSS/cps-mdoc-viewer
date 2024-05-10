@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-import { ApplicationConfig } from '@angular/core';
-import { provideCPSMDocViewer } from 'cps-mdoc-viewer';
-import { provideClientHydration } from '@angular/platform-browser';
+import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
+import { provideServerRendering } from '@angular/platform-server';
+import { appConfig } from './app.config';
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideCPSMDocViewer({
-      headerTitle: 'CPS MDoc Viewer',
-      pageTitle: 'Example App of the CPS MDoc Viewer library',
-      logo: 'assets/images/rocket.svg',
-      markdownFilesLocation: 'assets/categories'
-    }),
-    provideClientHydration()
-  ]
+const serverConfig: ApplicationConfig = {
+  providers: [provideServerRendering()]
 };
+
+export const config = mergeApplicationConfig(appConfig, serverConfig);
