@@ -16,17 +16,17 @@ This table is rendered using [the Table from cps-ui-kit library](https://absaoss
 
 <div class="cps-table sortable searchable filterableByColumns paginator">
 
-| Language   | Founder(s)                               | Year Released |
-| ---------- | ---------------------------------------- | ------------- |
-| Python     | Guido van Rossum                         | 1991          |
-| JavaScript | Brendan Eich                             | 1995          |
-| Java       | James Gosling                            | 1995          |
-| C          | Dennis Ritchie                           | 1972          |
-| C++        | Bjarne Stroustrup                        | 1985          |
-| Ruby       | Yukihiro Matsumoto                       | 1995          |
-| Swift      | Apple Inc.                               | 2014          |
-| Go         | Robert Griesemer, Rob Pike, Ken Thompson | 2007          |
-| Rust       | Graydon Hoare                            | 2010          |
-| PHP        | Rasmus Lerdorf                           | 1994          |
+| Language     | Founder(s)                                                 | Year Released |
+| ------------ | ---------------------------------------------------------- | ------------- |
+| `Python`     | Guido van Rossum                                           | 1991          |
+| `JavaScript` | [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) | 1995          |
+| `Java`       | James Gosling                                              | 1995          |
+| `C`          | Dennis Ritchie                                             | 1972          |
+| `C++`        | Bjarne Stroustrup                                          | 1985          |
+| `Ruby`       | Yukihiro Matsumoto                                         | 1995          |
+| `Swift`      | Apple Inc.                                                 | 2014          |
+| `Go`         | Robert Griesemer, Rob Pike, Ken Thompson                   | 2007          |
+| `Rust`       | Graydon Hoare                                              | 2010          |
+| `PHP`        | Rasmus Lerdorf                                             | 1994          |
 
 </div>

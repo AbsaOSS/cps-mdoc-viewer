@@ -121,6 +121,7 @@ export class MarkdownViewerComponent implements OnInit {
         environmentInjector: this.environmentInjector
       });
 
+      cpsTableRef.setInput('renderDataAsHTML', true);
       cpsTableRef.setInput('data', [...tableData.data]);
       cpsTableRef.setInput(
         'columns',
