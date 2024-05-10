@@ -12,7 +12,7 @@ Welcome to the heart of our knowledge base. Whether you're just getting started 
 
 ### Table of programming languages
 
-This table is rendered using [the Table from cps-ui-kit library.](https://absaoss.github.io/cps-shared-ui/table/api).
+This table is rendered using [the Table from cps-ui-kit library](https://absaoss.github.io/cps-shared-ui/table/api).
 
 <div class="cps-table sortable searchable filterableByColumns paginator">
 
