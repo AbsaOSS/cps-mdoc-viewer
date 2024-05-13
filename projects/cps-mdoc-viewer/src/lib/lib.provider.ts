@@ -24,6 +24,7 @@ import { MARKED_OPTIONS, MarkedOptions, provideMarkdown } from 'ngx-markdown';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { routes } from './config/routes';
 import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from './config/config';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 function markedOptionsFactory(): MarkedOptions {
   return {
@@ -57,6 +58,7 @@ export const provideCPSMDocViewer = (
     {
       provide: CONFIG_INJECTION_TOKEN,
       useValue: config
-    }
+    },
+    provideAnimations()
   ]);
 };
