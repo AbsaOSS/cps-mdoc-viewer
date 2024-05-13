@@ -16,9 +16,11 @@
 
 import { ApplicationConfig } from '@angular/core';
 import { provideCPSMDocViewer } from 'cps-mdoc-viewer';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
     provideCPSMDocViewer({
       headerTitle: 'CPS MDoc Viewer',
       pageTitle: 'Example App of the CPS MDoc Viewer library',

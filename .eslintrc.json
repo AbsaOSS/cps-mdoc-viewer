@@ -13,7 +13,7 @@
         "prettier"
       ],
       "rules": {
-        "license-header/header": ["error", "./license-header.js"]
+        "license-header/header": ["error", "./file-header.js"]
       }
     },
     {
