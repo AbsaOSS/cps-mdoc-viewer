@@ -20,7 +20,6 @@ import {
   HostListener,
   Renderer2,
   OnDestroy,
-  AfterRenderPhase,
   afterRender,
   Input
 } from '@angular/core';
@@ -61,12 +60,11 @@ export class ActiveLinkDirective implements OnDestroy {
     private router: Router,
     private location: Location
   ) {
-    afterRender(
-      () => {
+    afterRender({
+      read: () => {
         this.getNavbarHeight();
-      },
-      { phase: AfterRenderPhase.Read }
-    );
+      }
+    });
   }
 
   // We can consider replacing this with fixed value as the navbar seems to always have height of 66px

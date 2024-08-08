@@ -107,6 +107,7 @@ export class NavbarComponent implements OnInit {
       navBarMenuElement.getBoundingClientRect().height + 'px';
     // Force reflow by evaluating offsetHeight
     // see https://stackoverflow.com/questions/9016307/force-reflow-in-css-transitions-in-bootstrap
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     navBarMenuElement.offsetHeight;
     navBarMenuElement.classList.add('collapsing');
     navBarMenuElement.classList.remove('collapse', 'show');
