@@ -89,6 +89,25 @@ export class ActiveLinkDirective implements OnDestroy {
 
   setupClickListeners() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
+
+    // Handle scroll-to-top anchor
+    const scrollTopAnchor: HTMLAnchorElement =
+      this.elementRef.nativeElement.querySelector('.scroll-to-top');
+
+    if (scrollTopAnchor) {
+      this.subscriptions.push(
+        fromEvent(scrollTopAnchor, 'click')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((e) => {
+            e.preventDefault();
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          })
+      );
+    }
+
     this.listItems?.forEach((item) => {
       const click$ = fromEvent(item, 'click').pipe(takeUntil(this.destroy$));
       this.subscriptions.push(
