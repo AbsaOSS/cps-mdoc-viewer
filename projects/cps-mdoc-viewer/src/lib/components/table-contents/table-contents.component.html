@@ -3,7 +3,9 @@
   [appActiveLink]="(tableContents$ | async) ?? []">
   <div class="p-4">
     @if (tableContents$ | async; as tableContents) {
-      <h4 class="mb-4">{{ tableContents[0].title }}</h4>
+      <a href="#" class="scroll-to-top">
+        <h4 class="mb-4">{{ tableContents[0].title }}</h4>
+      </a>
       <div class="mb-0">
         <ul class="list-unstyled">
           @for (item of tableContents; track $index) {

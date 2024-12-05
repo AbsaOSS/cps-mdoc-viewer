@@ -6,6 +6,15 @@ $padding-left-multiplier: 1.1rem;
 $line-height: 1.5;
 
 :host {
+  a.scroll-to-top {
+    text-decoration: none;
+    color: $primary-color;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
   .contents-table {
     top: 4rem;
     // Navbar height is 66px + 10px offset = 76px
