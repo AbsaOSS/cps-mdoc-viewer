@@ -29,6 +29,9 @@ import { By } from '@angular/platform-browser';
   template: `
     <div class="navbar">navbar</div>
     <div [appActiveLink]="itemLinks">
+      <a href="#" class="scroll-to-top">
+        <h4>Documents</h4>
+      </a>
       <ul class="list-unstyled">
         <li><a href="#section1">Section 1</a></li>
         <li><a href="#section2">Section 2</a></li>
@@ -77,11 +80,25 @@ describe('ActiveLinkDirective', () => {
     const spy = jest.spyOn(directive, 'handleItemClick');
     tick();
     fixture.detectChanges();
+
     const section1Link: HTMLAnchorElement = fixture.nativeElement.querySelector(
       'a[href="#section1"]'
     );
     section1Link.click();
     expect(spy).toHaveBeenCalled();
+    expect(globalThis.window.scrollTo).toHaveBeenCalledWith({
+      behavior: 'smooth',
+      top: 0
+    });
+  }));
+
+  it('should properly set up scroll to top click event handlers', fakeAsync(() => {
+    directive.appActiveLink = testComponent.itemLinks;
+    tick();
+    fixture.detectChanges();
+    const scrollToTopLink: HTMLAnchorElement =
+      fixture.nativeElement.querySelector('a.scroll-to-top');
+    scrollToTopLink.click();
     expect(globalThis.window.scrollTo).toHaveBeenCalledWith({
       behavior: 'smooth',
       top: 0
