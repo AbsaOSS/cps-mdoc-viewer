@@ -25,18 +25,23 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { routes } from './config/routes';
 import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from './config/config';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { Hooks } from 'marked';
+
+const hooks = new Hooks();
 
 function markedOptionsFactory(): MarkedOptions {
   return {
     hooks: {
       options: {},
-      processAllTokens: (tokens) => tokens,
+      processAllTokens: (tokens: any) => tokens,
       preprocess: (markdown: string) => {
         // Remove metadata from markdown files
         const metadataPattern = /---[\s\S]*?---/;
         return markdown.replace(metadataPattern, '');
       },
-      postprocess: (html: string) => html
+      postprocess: (html: string) => html,
+      provideLexer: hooks.provideLexer,
+      provideParser: hooks.provideParser,
     }
   };
 }
@@ -55,10 +60,7 @@ export const provideCPSMDocViewer = (
       },
       sanitize: SecurityContext.NONE
     }),
-    {
-      provide: CONFIG_INJECTION_TOKEN,
-      useValue: config
-    },
+    { provide: CONFIG_INJECTION_TOKEN, useValue: config },
     provideAnimations()
   ]);
 };
