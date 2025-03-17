@@ -38,17 +38,16 @@ import {
 import { parseTableData } from '../../utils/parse-table-data.util';
 
 @Component({
-  selector: 'app-markdown-viewer',
-  standalone: true,
-  imports: [
-    MarkdownComponent,
-    TableContentsComponent,
-    CommonModule,
-    CpsDividerComponent,
-    CpsTableComponent
-  ],
-  templateUrl: './markdown-viewer.component.html',
-  styleUrl: './markdown-viewer.component.scss'
+    selector: 'app-markdown-viewer',
+    imports: [
+        MarkdownComponent,
+        TableContentsComponent,
+        CommonModule,
+        CpsDividerComponent,
+        CpsTableComponent
+    ],
+    templateUrl: './markdown-viewer.component.html',
+    styleUrl: './markdown-viewer.component.scss'
 })
 export class MarkdownViewerComponent implements OnInit {
   markdownFiles$: Observable<MarkdownFile[]> | undefined;

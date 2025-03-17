@@ -34,11 +34,10 @@ import {
 } from '../../config/config';
 
 @Component({
-  selector: 'navbar',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, CpsIconComponent],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+    selector: 'navbar',
+    imports: [CommonModule, RouterLink, RouterLinkActive, CpsIconComponent],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
   categories$: Observable<DirectoryToolbarInfo[]> | undefined;

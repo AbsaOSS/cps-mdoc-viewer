@@ -25,11 +25,10 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-table-contents',
-  standalone: true,
-  imports: [CommonModule, ActiveLinkDirective],
-  templateUrl: './table-contents.component.html',
-  styleUrl: './table-contents.component.scss'
+    selector: 'app-table-contents',
+    imports: [CommonModule, ActiveLinkDirective],
+    templateUrl: './table-contents.component.html',
+    styleUrl: './table-contents.component.scss'
 })
 export class TableContentsComponent implements OnInit {
   tableContents$: Observable<ListItem[]> | undefined;

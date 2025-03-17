@@ -21,10 +21,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'cps-mdoc-viewer',
-  standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, NgTemplateOutlet],
-  templateUrl: 'cps-mdoc-viewer.component.html'
+    selector: 'cps-mdoc-viewer',
+    imports: [RouterOutlet, NavbarComponent, FooterComponent, NgTemplateOutlet],
+    templateUrl: 'cps-mdoc-viewer.component.html'
 })
 export class CpsMdocViewerComponent {
   @ContentChild('footer', { static: false })
