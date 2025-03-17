@@ -33,7 +33,7 @@ function markedOptionsFactory(): MarkedOptions {
   return {
     hooks: {
       options: {},
-      processAllTokens: (tokens: any) => tokens,
+      processAllTokens: (tokens) => tokens,
       preprocess: (markdown: string) => {
         // Remove metadata from markdown files
         const metadataPattern = /---[\s\S]*?---/;
@@ -41,7 +41,7 @@ function markedOptionsFactory(): MarkedOptions {
       },
       postprocess: (html: string) => html,
       provideLexer: hooks.provideLexer,
-      provideParser: hooks.provideParser,
+      provideParser: hooks.provideParser
     }
   };
 }
