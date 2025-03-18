@@ -26,7 +26,6 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-table-contents',
-  standalone: true,
   imports: [CommonModule, ActiveLinkDirective],
   templateUrl: './table-contents.component.html',
   styleUrl: './table-contents.component.scss'

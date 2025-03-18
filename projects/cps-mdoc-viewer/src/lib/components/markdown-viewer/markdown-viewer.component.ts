@@ -39,7 +39,6 @@ import { parseTableData } from '../../utils/parse-table-data.util';
 
 @Component({
   selector: 'app-markdown-viewer',
-  standalone: true,
   imports: [
     MarkdownComponent,
     TableContentsComponent,

@@ -22,7 +22,6 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'cps-mdoc-viewer',
-  standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent, NgTemplateOutlet],
   templateUrl: 'cps-mdoc-viewer.component.html'
 })

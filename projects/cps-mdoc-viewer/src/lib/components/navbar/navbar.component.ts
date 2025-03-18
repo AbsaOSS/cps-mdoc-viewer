@@ -35,7 +35,6 @@ import {
 
 @Component({
   selector: 'navbar',
-  standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, CpsIconComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
