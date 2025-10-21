@@ -20,7 +20,7 @@ import {
   HostListener,
   Renderer2,
   OnDestroy,
-  afterRender,
+  afterEveryRender,
   Input
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -52,7 +52,7 @@ export class ActiveLinkDirective implements OnDestroy {
   private navbarHeight = 0;
   private destroy$ = new Subject<void>();
   private subscriptions: Subscription[] = [];
-  private anchorDebounceTimeout: number | null = null;
+  private anchorDebounceTimeout: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private elementRef: ElementRef,
@@ -60,7 +60,7 @@ export class ActiveLinkDirective implements OnDestroy {
     private router: Router,
     private location: Location
   ) {
-    afterRender({
+    afterEveryRender({
       read: () => {
         this.getNavbarHeight();
       }

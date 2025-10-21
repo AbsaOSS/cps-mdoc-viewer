@@ -44,7 +44,6 @@ import { parseTableData } from '../../utils/parse-table-data.util';
     TableContentsComponent,
     CommonModule,
     CpsDividerComponent,
-    CpsTableComponent
   ],
   templateUrl: './markdown-viewer.component.html',
   styleUrl: './markdown-viewer.component.scss'

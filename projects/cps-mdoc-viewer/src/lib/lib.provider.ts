@@ -41,7 +41,8 @@ function markedOptionsFactory(): MarkedOptions {
       },
       postprocess: (html: string) => html,
       provideLexer: hooks.provideLexer,
-      provideParser: hooks.provideParser
+      provideParser: hooks.provideParser,
+      emStrongMask: hooks.emStrongMask
     }
   };
 }
