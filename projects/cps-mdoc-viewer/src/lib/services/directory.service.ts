@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { Category } from '../models/categories.interface';
 import { CategoriesDataService } from './categories-data.service';
@@ -24,7 +24,8 @@ import { DirectoryToolbarInfo } from '../models/directory-toolbar-info.interface
   providedIn: 'root'
 })
 export class DirectoryService {
-  constructor(private categoriesDataService: CategoriesDataService) {}
+  private categoriesDataService = inject(CategoriesDataService);
+
 
   getTopLevelDirectories(): Observable<DirectoryToolbarInfo[]> {
     return this.categoriesDataService.getCategories().pipe(

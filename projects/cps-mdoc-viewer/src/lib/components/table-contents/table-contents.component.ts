@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TableContentsService } from './service/table-contents.service';
@@ -31,11 +31,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './table-contents.component.scss'
 })
 export class TableContentsComponent implements OnInit {
+  private tableContentsService = inject(TableContentsService);
+  private route = inject(ActivatedRoute);
+
   tableContents$: Observable<ListItem[]> | undefined;
-  constructor(
-    private tableContentsService: TableContentsService,
-    private route: ActivatedRoute
-  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

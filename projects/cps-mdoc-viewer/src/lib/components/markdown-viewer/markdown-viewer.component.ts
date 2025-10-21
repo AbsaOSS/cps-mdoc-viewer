@@ -15,15 +15,7 @@
  */
 
 import { CommonModule } from '@angular/common';
-import {
-  ApplicationRef,
-  ChangeDetectorRef,
-  Component,
-  EnvironmentInjector,
-  Inject,
-  OnInit,
-  createComponent
-} from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, EnvironmentInjector, OnInit, createComponent, inject } from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { map, Observable, tap } from 'rxjs';
 import { TableContentsComponent } from '../table-contents/table-contents.component';
@@ -49,18 +41,16 @@ import { parseTableData } from '../../utils/parse-table-data.util';
   styleUrl: './markdown-viewer.component.scss'
 })
 export class MarkdownViewerComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private title = inject(Title);
+  protected libConfig = inject<CPSMDocViewerConfig>(CONFIG_INJECTION_TOKEN);
+  private appRef = inject(ApplicationRef);
+  private environmentInjector = inject(EnvironmentInjector);
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
   markdownFiles$: Observable<MarkdownFile[]> | undefined;
   markdownFilesToRender = 0;
   tablesReplaced = false;
-
-  constructor(
-    private route: ActivatedRoute,
-    private title: Title,
-    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig,
-    private appRef: ApplicationRef,
-    private environmentInjector: EnvironmentInjector,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
 
   ngOnInit(): void {
     this.markdownFiles$ = this.route.data.pipe(

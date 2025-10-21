@@ -14,15 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Renderer2,
-  OnDestroy,
-  afterEveryRender,
-  Input
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2, OnDestroy, afterEveryRender, Input, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
 import { Location } from '@angular/common';
@@ -38,6 +30,11 @@ export interface ListItem {
   standalone: true
 })
 export class ActiveLinkDirective implements OnDestroy {
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private router = inject(Router);
+  private location = inject(Location);
+
   @Input() set appActiveLink(items: ListItem[]) {
     if (items.length) {
       setTimeout(() => {
@@ -54,12 +51,7 @@ export class ActiveLinkDirective implements OnDestroy {
   private subscriptions: Subscription[] = [];
   private anchorDebounceTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-    private router: Router,
-    private location: Location
-  ) {
+  constructor() {
     afterEveryRender({
       read: () => {
         this.getNavbarHeight();

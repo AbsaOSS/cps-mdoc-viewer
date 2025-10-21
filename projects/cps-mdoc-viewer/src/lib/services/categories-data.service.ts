@@ -15,7 +15,7 @@
  */
 
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
 import { Category } from '../models/categories.interface';
 import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from '../config/config';
@@ -24,13 +24,14 @@ import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from '../config/config';
   providedIn: 'root'
 })
 export class CategoriesDataService {
+  private http = inject(HttpClient);
+
   pathToCategoriesJson: string;
   private cache$: Observable<Category> | undefined;
 
-  constructor(
-    private http: HttpClient,
-    @Inject(CONFIG_INJECTION_TOKEN) config: CPSMDocViewerConfig
-  ) {
+  constructor() {
+    const config = inject<CPSMDocViewerConfig>(CONFIG_INJECTION_TOKEN);
+
     this.pathToCategoriesJson =
       (config.markdownFilesLocation.endsWith('/')
         ? config.markdownFilesLocation
