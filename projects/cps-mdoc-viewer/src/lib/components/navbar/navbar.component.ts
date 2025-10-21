@@ -15,7 +15,14 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, viewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  viewChild,
+  inject
+} from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { DirectoryService } from '../../services/directory.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';

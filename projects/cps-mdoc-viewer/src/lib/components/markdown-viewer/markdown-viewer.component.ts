@@ -15,7 +15,15 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { ApplicationRef, ChangeDetectorRef, Component, EnvironmentInjector, OnInit, createComponent, inject } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectorRef,
+  Component,
+  EnvironmentInjector,
+  OnInit,
+  createComponent,
+  inject
+} from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { map, Observable, tap } from 'rxjs';
 import { TableContentsComponent } from '../table-contents/table-contents.component';
@@ -35,7 +43,7 @@ import { parseTableData } from '../../utils/parse-table-data.util';
     MarkdownComponent,
     TableContentsComponent,
     CommonModule,
-    CpsDividerComponent,
+    CpsDividerComponent
   ],
   templateUrl: './markdown-viewer.component.html',
   styleUrl: './markdown-viewer.component.scss'

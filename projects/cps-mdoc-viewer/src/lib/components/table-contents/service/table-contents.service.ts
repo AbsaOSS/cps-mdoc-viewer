@@ -28,7 +28,6 @@ const TABLE_CONTENTS_SUBHEADING = 'table-contents-subheading-';
 export class TableContentsService {
   private categoriesDataService = inject(CategoriesDataService);
 
-
   getCategorizedTableContents(directory: string): Observable<ListItem[]> {
     return this.categoriesDataService
       .getCategories()

@@ -25,7 +25,6 @@ import { CategoriesDataService } from './categories-data.service';
 export class MarkdownResourceService {
   private categoriesDataService = inject(CategoriesDataService);
 
-
   getMarkdownFiles(directory: string): Observable<MarkdownFile[]> {
     return this.categoriesDataService
       .getCategories()

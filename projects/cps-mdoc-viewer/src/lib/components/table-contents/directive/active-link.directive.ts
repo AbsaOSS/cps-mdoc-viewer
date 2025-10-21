@@ -14,7 +14,16 @@
  * limitations under the License.
  */
 
-import { Directive, ElementRef, HostListener, Renderer2, OnDestroy, afterEveryRender, Input, inject } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Renderer2,
+  OnDestroy,
+  afterEveryRender,
+  Input,
+  inject
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
 import { Location } from '@angular/common';

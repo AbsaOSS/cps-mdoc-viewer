@@ -26,7 +26,6 @@ import { DirectoryToolbarInfo } from '../models/directory-toolbar-info.interface
 export class DirectoryService {
   private categoriesDataService = inject(CategoriesDataService);
 
-
   getTopLevelDirectories(): Observable<DirectoryToolbarInfo[]> {
     return this.categoriesDataService.getCategories().pipe(
       map((data: Category) => {
