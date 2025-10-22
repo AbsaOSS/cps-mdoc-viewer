@@ -11,10 +11,10 @@
             <div class="me-4">{{ files[0]['date'] | date }}</div>
             <!-- TODO: implement reading time calculator-->
             <!-- <svg class="me-2" xmlns="https://www.w3.org/2000/svg" width="4.94mm" height="4.94mm" viewBox="0 0 14 14">
-              <circle cx="7" cy="7" r="6.5" style="fill: none; stroke: #ffffff"></circle>
-              <path d="M4.72,3.26,7,7.31,9.78,5.52" style="fill: none; stroke: #ffffff; stroke-linejoin: round"></path>
-            </svg>
-            12min read -->
+            <circle cx="7" cy="7" r="6.5" style="fill: none; stroke: #ffffff"></circle>
+            <path d="M4.72,3.26,7,7.31,9.78,5.52" style="fill: none; stroke: #ffffff; stroke-linejoin: round"></path>
+          </svg>
+          12min read -->
           </div>
         </div>
         @if (files[0]['image']) {
@@ -34,7 +34,9 @@
 
       <div class="col-lg-9">
         @for (file of files; track $index) {
-          <cps-divider *ngIf="file.level === 1" class="wrapper-divider" />
+          @if (file.level === 1) {
+            <cps-divider class="wrapper-divider" />
+          }
           <div class="markdown-wrapper" [id]="file.id">
             @if ($index !== 0) {
               <h2 class="section-title">{{ file.title }}</h2>

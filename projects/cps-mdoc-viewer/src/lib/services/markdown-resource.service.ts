@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { MarkdownFile, Category } from '../models/categories.interface';
 import { CategoriesDataService } from './categories-data.service';
@@ -23,7 +23,7 @@ import { CategoriesDataService } from './categories-data.service';
   providedIn: 'root'
 })
 export class MarkdownResourceService {
-  constructor(private categoriesDataService: CategoriesDataService) {}
+  private categoriesDataService = inject(CategoriesDataService);
 
   getMarkdownFiles(directory: string): Observable<MarkdownFile[]> {
     return this.categoriesDataService

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Category } from '../../../models/categories.interface';
 import { CategoriesDataService } from '../../../services/categories-data.service';
@@ -26,7 +26,7 @@ const TABLE_CONTENTS_SUBHEADING = 'table-contents-subheading-';
   providedIn: 'root'
 })
 export class TableContentsService {
-  constructor(private categoriesDataService: CategoriesDataService) {}
+  private categoriesDataService = inject(CategoriesDataService);
 
   getCategorizedTableContents(directory: string): Observable<ListItem[]> {
     return this.categoriesDataService

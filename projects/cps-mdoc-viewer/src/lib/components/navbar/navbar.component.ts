@@ -19,9 +19,9 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Inject,
   OnInit,
-  viewChild
+  viewChild,
+  inject
 } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { DirectoryService } from '../../services/directory.service';
@@ -40,15 +40,13 @@ import {
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
+  private directoryService = inject(DirectoryService);
+  protected libConfig = inject<CPSMDocViewerConfig>(CONFIG_INJECTION_TOKEN);
+
   categories$: Observable<DirectoryToolbarInfo[]> | undefined;
   scrollPercent = 0;
   navbarMenu = viewChild<ElementRef>('navbarMenu');
   navbarMenuTransitioning = false;
-
-  constructor(
-    private directoryService: DirectoryService,
-    @Inject(CONFIG_INJECTION_TOKEN) protected libConfig: CPSMDocViewerConfig
-  ) {}
 
   ngOnInit(): void {
     this.categories$ = this.directoryService.getTopLevelDirectories().pipe(
