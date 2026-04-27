@@ -128,7 +128,7 @@ export class ActiveLinkDirective implements OnDestroy {
     });
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll(): void {
     let activeSet = false;
     this.sections.forEach((section, index) => {

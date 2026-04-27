@@ -2,13 +2,13 @@
   "name": "cps-mdoc-viewer",
   "version": "0.0.12",
   "peerDependencies": {
-    "@angular/common": "^20.3.6",
-    "@angular/core": "^20.3.6",
-    "cps-ui-kit": "^20.1.0",
+    "@angular/common": "^21.2.10",
+    "@angular/core": "^21.2.10",
+    "cps-ui-kit": "^21.8.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
-    "marked": "^16.4.1",
-    "ngx-markdown": "^20.1.0",
+    "marked": "^17.0.6",
+    "ngx-markdown": "^21.2.0",
     "bootstrap": "^5.3.8"
   },
   "dependencies": {

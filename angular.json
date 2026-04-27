@@ -83,7 +83,10 @@
           }
         },
         "test": {
-          "builder": "@angular-builders/jest:run"
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "zoneless": false
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
@@ -118,7 +121,10 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-builders/jest:run"
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "zoneless": false
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
