@@ -19,10 +19,10 @@ jobs:
         with:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Use Node.js v20.x
-        uses: actions/setup-node@v3
+      - name: Use Node.js v24.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 24.x
           registry-url: 'https://registry.npmjs.org'
 
       - name: Bump version
@@ -55,19 +55,12 @@ jobs:
       - name: Fetch latest commits
         run: git pull origin master
 
-      - name: Use Node.js v20.x
-        uses: actions/setup-node@v3
+      - name: Use Node.js v24.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 24.x
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: projects/cps-mdoc-viewer/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('projects/cps-mdoc-viewer/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
