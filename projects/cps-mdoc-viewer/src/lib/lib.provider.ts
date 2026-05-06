@@ -20,7 +20,12 @@ import {
   makeEnvironmentProviders
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { MARKED_OPTIONS, MarkedOptions, provideMarkdown } from 'ngx-markdown';
+import {
+  MARKED_OPTIONS,
+  MarkedOptions,
+  SANITIZE,
+  provideMarkdown
+} from 'ngx-markdown';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { routes } from './config/routes';
 import { CONFIG_INJECTION_TOKEN, CPSMDocViewerConfig } from './config/config';
@@ -59,7 +64,7 @@ export const provideCPSMDocViewer = (
         provide: MARKED_OPTIONS,
         useFactory: markedOptionsFactory
       },
-      sanitize: SecurityContext.NONE
+      sanitize: { provide: SANITIZE, useValue: SecurityContext.NONE }
     }),
     { provide: CONFIG_INJECTION_TOKEN, useValue: config },
     provideAnimations()
