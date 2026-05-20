@@ -79,4 +79,4 @@ jobs:
 
       - name: Publish to NPM registry
         working-directory: dist/cps-mdoc-viewer
-        run: npm publish
+        run: NODE_AUTH_TOKEN="" npm publish
