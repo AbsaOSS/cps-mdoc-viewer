@@ -54,21 +54,18 @@ jobs:
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch latest commits
         run: git pull origin master
 
-      - name: Use Node.js v22.x
-        uses: actions/setup-node@v5
+      - name: Use Node.js v24.x
+        uses: actions/setup-node@v6
         with:
-          node-version: 22.x
-          cache: 'npm'
-
-      - name: Use latest npm 11 (required by npmjs.com OIDC)
-        run: npm install -g npm@11
+          node-version: 24.x
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: npm ci
@@ -82,4 +79,4 @@ jobs:
 
       - name: Publish to NPM registry
         working-directory: dist/cps-mdoc-viewer
-        run: npm publish
+        run: NODE_AUTH_TOKEN="" npm publish
