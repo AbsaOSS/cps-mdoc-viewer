@@ -8,10 +8,15 @@ on:
       - 'projects/cps-mdoc-viewer/**'
       - '.github/workflows/cps-mdoc-viewer-publish.yml'
 
+permissions:
+  contents: read
+
 jobs:
   version-bump:
     if: "!contains(github.event.head_commit.message, 'Bump version to') && !contains(github.event.head_commit.message, '#SkipVersionBump')"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
@@ -32,7 +37,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           version=$(npm version patch -m "Bump version to %s")
-          echo "::set-output name=version::$version"
+          echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Commit and push
         working-directory: projects/cps-mdoc-viewer
@@ -45,7 +50,9 @@ jobs:
     needs: version-bump
     runs-on: ubuntu-latest
     if: always() && !cancelled() && !failure() && !contains(github.event.head_commit.message, 'Bump version to')
-
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -75,5 +82,3 @@ jobs:
       - name: Publish to NPM registry
         working-directory: dist/cps-mdoc-viewer
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
