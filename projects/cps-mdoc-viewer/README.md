@@ -1,5 +1,7 @@
 # CPS MDoc Viewer
 
+**[Live demo](https://absaoss.github.io/cps-mdoc-viewer/)**
+
 An Angular library for building documentation and tutorial websites powered by markdown. Drop it into your app, point it at a folder of `.md` files, and it takes care of the rest — navigation, routing, a table of contents, and a clean reading layout out of the box.
 
 ### Features
